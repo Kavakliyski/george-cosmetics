@@ -1,11 +1,14 @@
-import Link from 'next/link'
+
+import styles from '../styles/header.module.scss';
+
+import Link from 'next/link';
 
 
 export default function Header() {
 
     return (
 
-        <nav>
+        <nav className={styles.header}>
             <h1>Header</h1>
 
             <ul>
