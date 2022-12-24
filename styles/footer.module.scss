@@ -1,0 +1,17 @@
+@import './variables.scss';
+
+
+.footer {
+    font-weight: 100;
+    font-size: 36px;
+
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    position: fixed;
+    bottom: 0;
+}
