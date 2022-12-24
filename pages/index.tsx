@@ -1,8 +1,10 @@
 import Head from 'next/head'
-import Image from 'next/image'
-import { Inter } from '@next/font/google'
 
-const inter = Inter({ subsets: ['latin'] })
+
+// components
+import Header from '../components/heading_footer/header'
+import Footer from '../components/heading_footer/footeer'
+import Header2 from '../components/heading_footer/header2'
 
 export default function Home() {
     return (
@@ -12,6 +14,10 @@ export default function Home() {
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
+
+            {/* <Header /> */}
+            <Header2 />
+            
             <main className=''>
                 <div className=''>
                     <h1 className="text-3xl font-bold underline">
@@ -19,6 +25,7 @@ export default function Home() {
                     </h1>
                 </div>
             </main>
+            <Footer />
         </>
     )
 }
