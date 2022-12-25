@@ -1,14 +1,48 @@
+@import './variables.scss';
 
 
-
-.header{
+.header {
+    background-color: transparent;
+    transition: 0.5s;
     display: flex;
-    padding: 5px 15px 5px 15px;
 
     justify-content: center;
     align-items: center;
 
-    ul{
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 50;
+    width: 100vw;
+
+
+    ul {
+        display: flex;
+        text-decoration: none;
+        list-style: none;
+        gap: 10px;
+    }
+
+    &:hover {
+        background-color: $third-color;
+    }
+}
+
+.header2 {
+    background-color: $third-color;
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 50;
+    width: 100vw;
+
+
+    ul {
         display: flex;
         text-decoration: none;
         list-style: none;

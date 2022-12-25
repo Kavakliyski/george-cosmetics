@@ -3,12 +3,38 @@ import styles from '../styles/header.module.scss';
 
 import Link from 'next/link';
 
+// react
+import { useEffect, useState } from 'react';
+
 
 export default function Header() {
 
+    const [isScrolled, setIsScrolled] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.scrollY > 0) {
+                setIsScrolled(true);
+            } else {
+                setIsScrolled(false);
+            }
+        }
+
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        }
+
+    }, [])
+
+
     return (
 
-        <nav className={styles.header}>
+        <header
+            className={isScrolled ? styles.header : styles.header2}
+
+        >
             <h1>Header</h1>
 
             <ul>
@@ -23,6 +49,6 @@ export default function Header() {
                 </li>
 
             </ul>
-        </nav>
+        </header>
     )
 }

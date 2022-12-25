@@ -1,0 +1,47 @@
+@import './variables.scss';
+
+
+.container {
+    font-size: 58px;
+    background-color: $third-color;
+    width: 30%;
+    text-align: center;
+    margin: 0 auto 0 auto;
+
+    border: 5px solid $third-color;
+    border-radius: 15px;
+
+    margin-bottom: 200px;
+}
+
+.wrapper {
+
+    align-items: center;
+    padding: 20px;
+
+    form {
+        text-align: left;
+        display: grid;
+        grid-template-rows: repeat(2, 1fr);
+
+        justify-items: center;
+
+        input {
+            width: 90%;
+            height: 50px
+        }
+
+        padding: 10px;
+
+    }
+
+    button {
+        width: 300px;
+        height: 100px;
+        background-color: $text-color;
+        border-radius: 30px;
+        font-size: 48px;
+        font-weight: 300;
+        color: $third-color;
+    }
+}

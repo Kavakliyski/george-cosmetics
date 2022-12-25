@@ -1,5 +1,5 @@
 import Head from 'next/head'
-
+import styles from '../styles/pages/signin.module.scss';
 
 export default function Home() {
     return (
@@ -13,8 +13,17 @@ export default function Home() {
             </Head>
 
             <main className=''>
-                <div>
-                    sign in
+                <div className={styles.container}>
+                    <h2>Sign In</h2>
+                    <div className={styles.wrapper}>
+                        <form>
+                            <label>E-mail</label>
+                            <input type="email" placeholder='Email' />
+                            <label>Password</label>
+                            <input type="password" placeholder='Password' />
+                        </form>
+                        <button type='submit'>Submit</button>
+                    </div>
                 </div>
             </main>
         </>
