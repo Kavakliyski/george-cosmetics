@@ -3,16 +3,21 @@
 
 
 .container {
-    font-size: 58px;
+    font-size: 2.5vw;
     background-color: $third-color;
     width: 30%;
     text-align: center;
     margin: 0 auto 0 auto;
+    font-weight: 900;
 
     border: 5px solid $third-color;
     border-radius: 15px;
 
     margin-bottom: 200px;
+
+    p{
+        font-size: 1vw;
+    }
 
     @include for-phone-only {
         font-size: 1rem;
