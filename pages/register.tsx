@@ -2,9 +2,10 @@ import { useState } from "react";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import styles from '../styles/pages/signin.module.scss';
 
-import Head from 'next/head'
+import Head from 'next/head';
 
-import { auth } from '../firebase'
+import auth from '../firebase';
+
 import Link from "next/link";
 
 
@@ -40,8 +41,8 @@ export default function register() {
                 const errorCode = error.code;
                 const errorMessage = error.message;
 
-                alert(errorCode);
-                alert(errorMessage);
+                console.log(errorCode);
+                console.log(errorMessage);
 
                 setRegistering(false);
             })
