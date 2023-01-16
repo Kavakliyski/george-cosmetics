@@ -1,8 +1,35 @@
+// next
 import Head from 'next/head'
-import styles from '../styles/pages/signin.module.scss';
 import Link from 'next/link';
+import { useState } from 'react';
+
+// styles
+import styles from '../styles/pages/signin.module.scss';
+
+// auth
+import { UserAuth } from '../context/AuthContext';
 
 export default function Home() {
+
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [error, setError] = useState('')
+
+
+    const { createUser } = UserAuth();
+
+    const handleSubmit = async (event: React.ChangeEvent<HTMLInputElement>) => {
+        event.preventDefault();
+        setError('');
+        try {
+            await createUser(email, password)
+        } catch (e) {
+            setError(event.target.value);
+            console.log(event.target.value)
+        }
+
+    }
+
     return (
         <>
 
@@ -17,11 +44,11 @@ export default function Home() {
                 <div className={styles.container}>
                     <h2>Sign In</h2>
                     <div className={styles.wrapper}>
-                        <form>
+                        <form onSubmit={handleSubmit}>
                             <label>E-mail</label>
-                            <input type="email" placeholder='Email' />
+                            <input onChange={(event) => setEmail(event.target.value)} type="email" placeholder='Email' />
                             <label>Password</label>
-                            <input type="password" placeholder='Password' />
+                            <input onChange={(event) => setPassword(event.target.value)} type="password" placeholder='Password' />
                         </form>
                         <button type='submit'>Submit</button>
                     </div>
