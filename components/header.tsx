@@ -49,7 +49,7 @@ export default function Header() {
                     <Link href="/deadpage">deadpage</Link>
                 </li>
 
-                <Image src='' alt='shopping cart' width={30} height={30} />
+                {/* <Image src='' alt='shopping cart' width={30} height={30} /> */}
             </ul>
         </header>
     )

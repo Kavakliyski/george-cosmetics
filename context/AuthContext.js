@@ -1,23 +1,38 @@
-import { createContext } from "react";
+// react
+import React, {
+    createContext,
+    useContext,
+    useEffect,
+    useState
+} from "react";
+
+// firebase
 import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
     signOut,
     onAuthStateChanged
 } from 'firebase/auth';
-
 import { auth } from '../firebase'
 
-const UserContext = createContext();
 
-export const AutchContextProvider = ({ children }) => {
+export const UserContext = createContext();
 
+
+// main
+export const AuthContextProvider = ({ children }) => {
+    const [user, setUser] = useState({});
+
+    // new user
     const createUser = (email, password) => {
         return createUserWithEmailAndPassword(auth, email, password);
-    }
+    };
+
+
+
 
     return (
-        <UserContext.Provider value={createUser}>
+        <UserContext.Provider value={{ createUser }}>
             {children}
         </UserContext.Provider>
     )
@@ -25,5 +40,5 @@ export const AutchContextProvider = ({ children }) => {
 
 
 export const UserAuth = () => {
-    return UserContext(UserContext)
+    return useContext(UserContext)
 }

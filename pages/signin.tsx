@@ -16,20 +16,6 @@ export default function Home() {
     const [error, setError] = useState('')
 
 
-    const { createUser } = UserAuth();
-
-    const handleSubmit = async (event: React.ChangeEvent<HTMLInputElement>) => {
-        event.preventDefault();
-        setError('');
-        try {
-            await createUser(email, password)
-        } catch (e) {
-            setError(event.target.value);
-            console.log(event.target.value)
-        }
-
-    }
-
     return (
         <>
 
@@ -44,7 +30,7 @@ export default function Home() {
                 <div className={styles.container}>
                     <h2>Sign In</h2>
                     <div className={styles.wrapper}>
-                        <form onSubmit={handleSubmit}>
+                        <form onSubmit={() => handleSubmit}>
                             <label>E-mail</label>
                             <input onChange={(event) => setEmail(event.target.value)} type="email" placeholder='Email' />
                             <label>Password</label>
