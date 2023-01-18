@@ -2,7 +2,8 @@
 import IPageProps from "../interfaces/page";
 
 // next
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
+import { useRouter } from "next/router";
 import Head from 'next/head';
 import Link from "next/link";
 
@@ -13,7 +14,7 @@ import styles from '../styles/pages/signin.module.scss';
 import { UserAuth } from '../context/AuthContext';
 
 // errors
-import { signinError } from "../components/errorMsg/signinError";
+import { SigninError } from "../components/errorMsg/SigninError";
 
 const RegisterPage: IPageProps = () => {
 
@@ -25,22 +26,24 @@ const RegisterPage: IPageProps = () => {
 
     const { createUser } = UserAuth();
 
-    const handleSubmit = async (e: any) => {
-        e.preventDefault();
+    const router = useRouter();
+
+    const handleSubmit = async (event: any) => {
+        event.preventDefault();
         setError('');
-
-
-
 
         try {
             await createUser(email, password);
             setError('');
-        } catch (e) {
-            setError(e.message);
-            console.log(e.message);
+            router.push('/signin');
+
+        } catch (err) {
+            console.log(err.message);
+            setError(err.message);
             console.log(error);
         }
-    }
+    };
+
 
     return (
 
@@ -52,11 +55,13 @@ const RegisterPage: IPageProps = () => {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
-            <main className=''>
+            <main>
                 <div className={styles.container}>
                     <h2>Register</h2>
                     <div className={styles.wrapper}>
-                        <form onSubmit={handleSubmit}>
+                        <form
+                            onSubmit={handleSubmit}
+                        >
                             <input
                                 type='email'
                                 name='email'
@@ -66,32 +71,31 @@ const RegisterPage: IPageProps = () => {
                                 onChange={(event) => setEmail(event.target.value)}
                             />
                             {
-                                <signinError props={error} />
+                                error === 'Firebase: Error (auth/missing-email).' ? <p>Missing email</p> : null
                             }
-
+                            {
+                                error === 'Firebase: Error (auth/invalid-email).' ? <p>Invalid email</p> : null
+                            }
+                            {
+                                error === 'Firebase: Error (auth/email-already-in-use).' ? <p>Email already in use</p> : null
+                            }
                             <input
                                 autoComplete="new-password"
                                 type='password'
                                 name='password'
                                 id='password'
-                                placeholder='Enter Password'
+                                placeholder='Create Password'
                                 value={password}
                                 onChange={(event) => setPassword(event.target.value)}
                             />
-                            <input
-                                autoComplete="new-password"
-                                type='password'
-                                name='confirm'
-                                id='confirm'
-                                placeholder='Confrim Password'
-                                value={confirm}
-                                onChange={(event) => setConfirm(event.target.value)}
-                            />
+                            {
+                                error === 'Firebase: Error (auth/internal-error).' ? <p>Invalid password</p> : null
+                            }
+                            {
+                                error === 'Firebase: Password should be at least 6 characters (auth/weak-password).' ? <p>Password should be at least 6 characters</p> : null
+                            }
 
-
-                            <button
-                            // disabled={!registering}
-                            >
+                            <button>
                                 Sign In
                             </button>
                         </form>
