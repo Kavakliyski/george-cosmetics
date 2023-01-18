@@ -12,18 +12,26 @@ import styles from '../styles/pages/signin.module.scss';
 // auth
 import { UserAuth } from '../context/AuthContext';
 
+// errors
+import { signinError } from "../components/errorMsg/signinError";
 
 const RegisterPage: IPageProps = () => {
 
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
+    const [confirm, setConfirm] = useState<string>('');
     const [error, setError] = useState<string>('');
+    const [registering, setRegistering] = useState<boolean>(false);
 
     const { createUser } = UserAuth();
 
     const handleSubmit = async (e: any) => {
         e.preventDefault();
         setError('');
+
+
+
+
         try {
             await createUser(email, password);
             setError('');
@@ -57,6 +65,10 @@ const RegisterPage: IPageProps = () => {
                                 value={email}
                                 onChange={(event) => setEmail(event.target.value)}
                             />
+                            {
+                                <signinError props={error} />
+                            }
+
                             <input
                                 autoComplete="new-password"
                                 type='password'
@@ -66,9 +78,19 @@ const RegisterPage: IPageProps = () => {
                                 value={password}
                                 onChange={(event) => setPassword(event.target.value)}
                             />
+                            <input
+                                autoComplete="new-password"
+                                type='password'
+                                name='confirm'
+                                id='confirm'
+                                placeholder='Confrim Password'
+                                value={confirm}
+                                onChange={(event) => setConfirm(event.target.value)}
+                            />
+
 
                             <button
-                            // disabled={true}
+                            // disabled={!registering}
                             >
                                 Sign In
                             </button>
@@ -82,38 +104,3 @@ const RegisterPage: IPageProps = () => {
 }
 
 export default RegisterPage;
-
-
-
-
-
-
-
-        // <>
-
-
-
-        //     <main className=''>
-        //
-        //
-        //             <div className={styles.wrapper}>
-        //                 <form>
-        //                     <label>E-mail</label>
-        //                     <input type="email" placeholder='Email'
-        //                         value={email}
-        //                         onChange={(event) => setEmail(event.target.value)}
-        //                     />
-        //                     <label>Password</label>
-        //                     <input type="password" placeholder='Password'
-        //                         value={password}
-        //                         onChange={(event) => setPassword(event.target.value)}
-        //                     />
-        //                     <button type='submit' onClick={() => handleSubmit}>Submit</button>
-        //                 </form>
-        //             </div>
-        //             <Link href="/signin">
-        //                 <p>Already have an account?</p>
-        //             </Link>
-        //         </div>
-        //     </main>
-        // </>
