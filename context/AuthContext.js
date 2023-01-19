@@ -29,10 +29,14 @@ export const AuthContextProvider = ({ children }) => {
     };
 
 
+    // sign in existing user
+    const signinUser = (email, password) => {
+        return signInWithEmailAndPassword(auth, email, password);
+    }
 
 
     return (
-        <UserContext.Provider value={{ createUser }}>
+        <UserContext.Provider value={{ createUser, signinUser }}>
             {children}
         </UserContext.Provider>
     )

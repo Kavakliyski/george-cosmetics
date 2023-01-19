@@ -1,6 +1,7 @@
 // next
 import Head from 'next/head'
 import Link from 'next/link';
+import { useRouter } from "next/router";
 import { useState } from 'react';
 
 // styles
@@ -9,12 +10,33 @@ import styles from '../styles/pages/signin.module.scss';
 // auth
 import { UserAuth } from '../context/AuthContext';
 
+
+
 export default function Home() {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState('')
 
+    const { signinUser } = UserAuth();
+
+    const router = useRouter();
+
+    const handleSubmit = async (event: any) => {
+        event.preventDefault();
+        setError('');
+
+        try {
+            await signinUser(email, password);
+            setError('');
+            router.push('/');
+
+        } catch (err) {
+            console.log(err.message);
+            setError(err.message);
+            console.log(error);
+        }
+    };
 
     return (
         <>
@@ -30,7 +52,7 @@ export default function Home() {
                 <div className={styles.container}>
                     <h2>Sign In</h2>
                     <div className={styles.wrapper}>
-                        <form onSubmit={() => handleSubmit}>
+                        <form onSubmit={() => {handleSubmit}}>
                             <label>E-mail</label>
                             <input onChange={(event) => setEmail(event.target.value)} type="email" placeholder='Email' />
                             <label>Password</label>

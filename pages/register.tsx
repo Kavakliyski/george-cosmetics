@@ -13,8 +13,6 @@ import styles from '../styles/pages/signin.module.scss';
 // auth
 import { UserAuth } from '../context/AuthContext';
 
-// errors
-import { SigninError } from "../components/errorMsg/SigninError";
 
 const RegisterPage: IPageProps = () => {
 
