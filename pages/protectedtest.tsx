@@ -2,9 +2,6 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 
 
-// import MyProtectedPage from './MyProtectedPage'
-// export default withAuth(MyProtectedPage)
-
 const protectedtest = () => {
     const router = useRouter();
 
