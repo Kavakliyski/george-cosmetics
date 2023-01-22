@@ -9,7 +9,7 @@ import styled from 'styled-components';
 import { Account } from './account/Account';
 
 
-const NavLinksA = styled.a`
+const NavLinksA = styled.h3`
     text-decoration: none;
     font-size: 28px;
     width: 10vw;
@@ -75,8 +75,8 @@ export default function Header() {
                     </li>
 
                     <li>
-                        <Link href="/deadpage" passHref legacyBehavior>
-                            <NavLinksA>deadpage</NavLinksA></Link>
+                        <Link href="/protectedtest" passHref legacyBehavior>
+                            <NavLinksA>protectedtest</NavLinksA></Link>
                     </li>
 
                     {/* <Image src='' alt='shopping cart' width={30} height={30} /> */}

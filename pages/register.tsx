@@ -33,7 +33,7 @@ const RegisterPage: IPageProps = () => {
         try {
             await createUser(email, password);
             setError('');
-            router.push('/signin');
+            router.push('/');
 
         } catch (err) {
             console.log(err.message);

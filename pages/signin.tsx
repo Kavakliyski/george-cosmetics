@@ -18,7 +18,7 @@ export default function Home() {
     const [password, setPassword] = useState('')
     const [error, setError] = useState('')
 
-    const { signinUser } = UserAuth();
+    const { signInUser } = UserAuth();
 
     const router = useRouter();
 
@@ -27,7 +27,7 @@ export default function Home() {
         setError('');
 
         try {
-            await signinUser(email, password);
+            await signInUser(email, password);
             setError('');
             router.push('/');
 
@@ -52,13 +52,29 @@ export default function Home() {
                 <div className={styles.container}>
                     <h2>Sign In</h2>
                     <div className={styles.wrapper}>
-                        <form onSubmit={() => {handleSubmit}}>
+                        <form
+                            onSubmit={handleSubmit}
+                        >
                             <label>E-mail</label>
-                            <input onChange={(event) => setEmail(event.target.value)} type="email" placeholder='Email' />
+                            <input
+                                type='email'
+                                name='email'
+                                id='email'
+                                placeholder='Enter Email'
+                                value={email}
+                                onChange={(event) => setEmail(event.target.value)}
+                            />
                             <label>Password</label>
-                            <input onChange={(event) => setPassword(event.target.value)} type="password" placeholder='Password' />
+                            <input
+                                type='password'
+                                name='password'
+                                id='password'
+                                placeholder='Enter Password'
+                                value={password}
+                                onChange={(event) => setPassword(event.target.value)}
+                            />
+                            <button type='submit'>Submit</button>
                         </form>
-                        <button type='submit'>Submit</button>
                     </div>
                     <Link href="/register">
                         <p>Don't have an account?</p>

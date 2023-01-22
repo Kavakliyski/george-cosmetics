@@ -16,7 +16,7 @@ import {
 import auth from '../firebase'
 
 
-export const UserContext = createContext();
+const UserContext = createContext();
 
 
 // main
@@ -30,13 +30,32 @@ export const AuthContextProvider = ({ children }) => {
 
 
     // sign in existing user
-    const signinUser = (email, password) => {
+    const signInUser = (email, password) => {
         return signInWithEmailAndPassword(auth, email, password);
     }
 
+    // sign out
+    const logout = () => {
+        return signOut(auth);
+    };
+
+    useEffect(() => {
+
+        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+            setUser(currentUser)
+            // console.log('currnet user', currentUser)
+            // console.log('user', user)
+        })
+
+        return () => {
+            unsubscribe();
+        }
+    }, [])
+
+    // checks if the user is authenticated or not
 
     return (
-        <UserContext.Provider value={{ createUser, signinUser }}>
+        <UserContext.Provider value={{ createUser, signInUser, user, logout }}>
             {children}
         </UserContext.Provider>
     )
