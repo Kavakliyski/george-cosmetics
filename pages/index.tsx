@@ -1,16 +1,9 @@
 import Head from 'next/head';
 
-import { sanity_client } from '../library/sanity-client';
-import HeroBanner from '../components/landingPage/HeroBanner';
 
 
-interface IProps {
-    bannerData: string;
-}
+export default function Home() {
 
-export default function Home({ bannerData }: IProps) {
-
-  
 
     return (
         <>
@@ -25,21 +18,9 @@ export default function Home({ bannerData }: IProps) {
 
             <main className=''>
                 landing page
-                {/* <HeroBanner heroBanner={bannerData.length && bannerData[0]} /> */}
                 <h2>Banner</h2>
                 <h2>Products</h2>
             </main>
         </>
     )
-}
-
-
-export const getServerSideProps = async () => {
-    const bannerQuery = '*[_type == banner]';
-    const bannerData = await sanity_client.fetch(bannerQuery);
-
-
-    return {
-        props: { bannerData }
-    }
 }
