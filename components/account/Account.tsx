@@ -1,11 +1,12 @@
 
 // next
 import { useRouter } from "next/router";
+import Link from 'next/link';
 
 // auth context
 import { UserAuth } from "../../context/AuthContext";
 
- 
+
 export const Account = () => {
 
     const { user, logout } = UserAuth();
@@ -24,8 +25,20 @@ export const Account = () => {
 
     return (
         <>
-            <p>Hello: {user && user.email}</p>
-            <button onClick={handleLogout}>Log out</button>
+            {
+                user
+                    ?
+                    <div>
+                        <p>Hello: {user && user.email}</p>
+                        <button onClick={handleLogout}>Log out</button>
+                    </div>
+                    :
+                    <div>
+                        <Link href="/signin"><p>Sign In</p></Link>
+                    </div>
+            }
+
+
         </>
     )
 };

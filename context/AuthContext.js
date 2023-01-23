@@ -43,8 +43,6 @@ export const AuthContextProvider = ({ children }) => {
 
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser)
-            // console.log('currnet user', currentUser)
-            // console.log('user', user)
         })
 
         return () => {
@@ -52,8 +50,7 @@ export const AuthContextProvider = ({ children }) => {
         }
     }, [])
 
-    // checks if the user is authenticated or not
-
+    
     return (
         <UserContext.Provider value={{ createUser, signInUser, user, logout }}>
             {children}
@@ -64,4 +61,4 @@ export const AuthContextProvider = ({ children }) => {
 
 export const UserAuth = () => {
     return useContext(UserContext)
-}
+};

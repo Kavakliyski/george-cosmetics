@@ -66,15 +66,6 @@ export default function Header() {
                             <NavLinksA>Home</NavLinksA></Link>
                     </li>
                     <li>
-                        <Link href="/signin" passHref legacyBehavior>
-                            <NavLinksA>Sign in</NavLinksA></Link>
-                    </li>
-                    <li>
-                        <Link href="/register" passHref legacyBehavior>
-                            <NavLinksA>Register</NavLinksA></Link>
-                    </li>
-
-                    <li>
                         <Link href="/protectedtest" passHref legacyBehavior>
                             <NavLinksA>protectedtest</NavLinksA></Link>
                     </li>
