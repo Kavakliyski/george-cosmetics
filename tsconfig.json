@@ -16,6 +16,6 @@
     "incremental": true,
     "useUnknownInCatchVariables": false
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "library/sanity-client.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "library/sanity-client.js", "components/HomePage/Products.jsx"],
   "exclude": ["node_modules"]
 }

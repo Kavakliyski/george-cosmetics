@@ -1,5 +1,6 @@
 import Head from 'next/head';
 
+import Products from '../components/HomePage/Products';
 
 
 export default function Home() {
@@ -19,8 +20,10 @@ export default function Home() {
             <main className=''>
                 landing page
                 <h2>Banner</h2>
-                <h2>Products</h2>
+                <Products />
             </main>
         </>
     )
 }
+
+

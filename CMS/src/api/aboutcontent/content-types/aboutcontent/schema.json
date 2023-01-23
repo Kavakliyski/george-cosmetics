@@ -1,0 +1,19 @@
+{
+  "kind": "collectionType",
+  "collectionName": "aboutcontents",
+  "info": {
+    "singularName": "aboutcontent",
+    "pluralName": "aboutcontents",
+    "displayName": "aboutcontent"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "body": {
+      "type": "richtext",
+      "required": true
+    }
+  }
+}
